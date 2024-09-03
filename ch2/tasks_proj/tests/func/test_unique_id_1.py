@@ -3,7 +3,7 @@
 import pytest
 import tasks
 
-
+@pytest.mark.xfail(reason='misunderstood the API')
 def test_unique_id():
     """Calling unique_id() twice should return different numbers."""
     id_1 = tasks.unique_id()
