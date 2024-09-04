@@ -2,6 +2,32 @@
 
 import pytest
 
+@pytest.fixture()
+def some_list():
+    """Return some list."""
+    return [0, 1, 2, 3]
+
+
+@pytest.fixture(scope="module")
+def some_dict():
+    """Return some dictionary."""
+    print('-------------------')
+    yield {1: "test", 2: "test", 3: "test"}
+    print('-------------------')
+
+def test_some_list(some_list):
+    """Try to use valid list."""
+    assert [0, 1, 2, 3] == some_list
+
+
+def test_some_dict(some_dict):
+    """Try to use valid dict."""
+    assert {1: "test", 2: "test", 3: "test"} == some_dict
+
+
+def test_len_some_dict(some_dict):
+    assert 3 == len(some_dict)
+
 
 @pytest.fixture()
 def some_data():
